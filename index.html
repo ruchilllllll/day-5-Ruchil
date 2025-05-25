@@ -1,289 +1,217 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio Home</title>
+    <title>My Master Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .theme-transition * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
-        .animate-fadeIn {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        
-        /* Dark mode toggle transition */
-        .theme-toggle {
-            transition: all 0.3s ease;
-        }
-        
-        /* Button hover effects */
-        .btn-hover {
-            transition: all 0.3s ease;
-        }
-        .btn-hover:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Social icon hover */
-        .social-icon {
-            transition: all 0.3s ease;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
         .social-icon:hover {
             transform: scale(1.1);
         }
+        .theme-toggle {
+            width: 50px;
+            height: 25px;
+            background-color: #4680f4;
+            border-radius: 9999px;
+            position: relative;
+            cursor: pointer;
+        }
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            background-color: white;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+        .dark .theme-toggle {
+            background-color: #ffffff;
+        }
+        .dark .theme-toggle::after {
+            transform: translateX(25px);
+            background-color: #f3f4f6;
+        }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
     </style>
 </head>
-<body class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
-    <!-- Navigation -->
-    <nav class="bg-white dark:bg-gray-800 shadow-sm">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="home.html" class="text-xl font-bold text-blue-600 dark:text-blue-400">MyPortfolio</a>
-            <button id="themeToggle" class="theme-toggle p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-                <i class="fas fa-moon dark:hidden"></i>
-                <i class="fas fa-sun hidden dark:block"></i>
-            </button>
-        </div>
-    </nav>
+<body class="theme-transition bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header with Theme Toggle -->
+        <header class="flex justify-between items-center mb-12">
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 gradient-text">Master Page</h1>
+            <div class="flex items-center space-x-4">
+                <span class="hidden sm:inline text-sm font-medium"><i class="fas fa-moon mr-1"></i> Theme</span>
+                <button id="themeToggle" class="theme-toggle">
+                    
+                    <span class="sr-only">Toggle theme</span>
+                </button>
+            </div>
+        </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-4xl mx-auto">
-            <!-- Profile Section -->
-            <section class="text-center mb-16 animate-fadeIn">
-                <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
-                    <img src="my-img.jpg" 
-                         alt="Profile Picture" 
-                         class="w-full h-full object-cover">
+        <!-- Profile Section -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="relative">
+                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1 floating">
+                        <img src="my-imgg.jpg" 
+                             alt="Profile" class="w-full h-full rounded-full object-cover border-2 border-white dark:border-gray-800">
+                    </div>
                 </div>
-                <h1 class="text-4xl font-bold mb-2">Hello, I'm <span class="text-blue-600 dark:text-blue-400">Ruchil Parkar</span></h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">Web Developer & Graphic Designer</p>
-                
-                <!-- Social Links -->
-                <div class="flex justify-center space-x-4 mb-8">
-                    <a href="https://github.com/ruchilllllll" class="social-icon text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ruchil-parkar-802213279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-icon text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="https://x.com/RuchilParkar20?t=ObfEF8pHocoIlNtqkRhSVw&s=09" class="social-icon text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                        <i class="fab fa-twitter text-2xl"></i>
-                    </a>
-                    <a href="https://www.instagram.com/rxchillll?igsh=MXAwNnMxZ282eDFwcw==" class="social-icon text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-                        <i class="fab fa-instagram text-2xl"></i>
-                    </a>
-                </div>
-                
-                <div class="max-w-2xl mx-auto">
-                    <p class="text-lg mb-6">
-                        Welcome to my portfolio! I'm a passionate web developer with expertise in modern frontend technologies. 
-                        I love creating beautiful, functional websites and applications.
+                <div class="flex-1 text-center md:text-left">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2">Ruchil Parkar</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">Web Developer & Graphic Designer</p>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">
+                        Driven by a passion for crafting visually stunning and highly functional digital experiences. Currently specializing in front-end development and user interface design, with a strong focus on creating intuitive, user-centered solutions
+                        
                     </p>
-                    <p class="text-lg">
-                        This portfolio showcases my daily progress and projects. Click on the buttons below to explore my work day by day.
-                    </p>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="https://x.com/RuchilParkar20?t=ObfEF8pHocoIlNtqkRhSVw&s=09" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ruchil-parkar-802213279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-blue-600 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/ruchilllllll" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-800 hover:text-white">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/rxchillll?igsh=MXAwNnMxZ282eDFwcw==" class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-pink-600 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
                 </div>
-            </section>
-            
-            <!-- Portfolio Days Navigation -->
-            <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Day 1 -->
-                <div class="animate-fadeIn" style="animation-delay: 0.2s">
-                    <a href="https://ruchilllllll.github.io/portfolio-day-II/" class="block btn-hover bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-4">
-                                    <span class="text-blue-600 dark:text-blue-300 font-bold">1</span>
-                                </div>
-                                <h3 class="text-xl font-bold">Day 1: Getting Started</h3>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300">
-                                My initial setup and first project exploring HTML and CSS fundamentals.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Day 2 -->
-                <div class="animate-fadeIn" style="animation-delay: 0.4s">
-                    <a href="https://ruchilllllll.github.io/portfolio-day-II/" class="block btn-hover bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-4">
-                                    <span class="text-blue-600 dark:text-blue-300 font-bold">2</span>
-                                </div>
-                                <h3 class="text-xl font-bold">Day 2: JavaScript Basics</h3>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300">
-                                Exploring JavaScript fundamentals and building interactive elements.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Day 3 -->
-                <div class="animate-fadeIn" style="animation-delay: 0.6s">
-                    <a href="https://ruchilllllll.github.io/ruchil-Portfolio-Day-III/" class="block btn-hover bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-4">
-                                    <span class="text-blue-600 dark:text-blue-300 font-bold">3</span>
-                                </div>
-                                <h3 class="text-xl font-bold">Day 3: Responsive Design</h3>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300">
-                                Mastering responsive layouts with Flexbox and CSS Grid.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                
-                
+            </div>
+        </section>
 
-                <!-- Day 4 -->
-                <div class="animate-fadeIn" style="animation-delay: 0.8s">
-                    <a href="https://ruchilllllll.github.io/day4-II-ruchil/" class="block btn-hover bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-all duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-4">
-                                    <span class="text-blue-600 dark:text-blue-300 font-bold">4</span>
-                                </div>
-                                <h3 class="text-xl font-bold">Day 4: Updated Projects</h3>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300">
-                                Building more complex applications with modern frameworks.
-                            </p>
-                        </div>
-                    </a>
+        <!-- Navigation Cards -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Card 1 -->
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-500 dark:text-blue-400 mb-4">
+                    <i class="fas fa-file-alt text-xl"></i>
                 </div>
-            </section>
-            
-            <!-- Call to Action -->
-            <section class="mt-16 text-center animate-fadeIn" style="animation-delay: 1s">
-                <h2 class="text-2xl font-bold mb-4">Want to see more?</h2>
-                <p class="text-lg mb-6">Check out my complete portfolio or get in touch!</p>
-                <div class="flex justify-center space-x-4">
-                    <a href="portfolio.html" class="btn-hover bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium">
-                        Full Portfolio
-                    </a>
-                    <a href="contact.html" class="btn-hover bg-white dark:bg-gray-800 border border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 px-8 py-3 rounded-lg font-medium">
-                        Contact Me
-                    </a>
-                </div>
-            </section>
-        </div>
-    </main>
+                <h3 class="text-xl font-semibold mb-2">Day-1</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">A simple HTML structure introducing Ruchil Parkar.</p>
+                <a href="https://ruchilllllll.github.io/portfolio-day-II/" class="inline-flex items-center text-blue-500 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300">
+                    Explore<i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
 
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 My Portfolio. All rights reserved.</p>
-        </div>
-    </footer>
+            <!-- Card 2 -->
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center text-purple-500 dark:text-purple-400 mb-4">
+                    <i class="fas fa-file-alt text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Day-2</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Introduced light/dark themes and smoother interactions using DaisyUI.</p>
+                <a href="https://ruchilllllll.github.io/portfolio-day-II/" class="inline-flex items-center text-purple-500 dark:text-purple-400 font-medium hover:text-purple-700 dark:hover:text-purple-300">
+                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/50 flex items-center justify-center text-green-500 dark:text-green-400 mb-4">
+                    <i class="fas fa-file-alt text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Day-3</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Boosted visuals with animations,icons, and hover transitions and added a dynamic quote of the day.</p>
+                <a href="https://ruchilllllll.github.io/ruchil-Portfolio-Day-III/" class="inline-flex items-center text-green-500 dark:text-green-400 font-medium hover:text-green-700 dark:hover:text-green-300">
+                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 rounded-lg bg-yellow-100 dark:bg-yellow-900/50 flex items-center justify-center text-yellow-500 dark:text-yellow-400 mb-4">
+                    <i class="fas fa-file-alt text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Day-4</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Added a dynamic cool shopping shop.
+                
+                </p>
+                <a href="https://ruchilllllll.github.io/ruchilllllll-portfolio-day-IV/" class="inline-flex items-center text-yellow-500 dark:text-yellow-400 font-medium hover:text-yellow-700 dark:hover:text-yellow-300">
+                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300">
+                <div class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/50 flex items-center justify-center text-red-500 dark:text-red-400 mb-4">
+                    <i class="fas fa-file-alt text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Day-5</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Integrated a working cart and checkout system. Edited website from start.</p>
+                <a href="https://ruchilllllll.github.io/day4-II-ruchil/" class="inline-flex items-center text-red-500 dark:text-red-400 font-medium hover:text-red-700 dark:hover:text-red-300">
+                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 dark:text-gray-400 text-sm pt-8 border-t border-gray-200 dark:border-gray-800">
+            <p>© 2025 Ruchil Parkar. All rights reserved.</p>
+        </footer>
+    </div>
 
     <script>
-            // Enhanced Theme Toggle Functionality
-    const themeToggle = document.getElementById('themeToggle');
-    
-    // 1. Initialize theme with better system preference detection
-    function initializeTheme() {
-        // Check localStorage first, then system preference
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        let theme = 'light';
-        if (savedTheme) {
-            theme = savedTheme;
-        } else if (systemPrefersDark) {
-            theme = 'dark';
-        }
-        
-        // Apply theme
-        applyTheme(theme);
-    }
-    
-    // 2. Apply theme with smooth transition
-    function applyTheme(theme) {
-        // Start transition
-        document.documentElement.classList.add('theme-transition');
-        document.documentElement.setAttribute('data-theme', theme);
-        
-        // Update icon
-        updateThemeIcon(theme);
-        
-        // Store preference
-        localStorage.setItem('theme', theme);
-        
-        // Remove transition class after animation completes
-        setTimeout(() => {
-            document.documentElement.classList.remove('theme-transition');
-        }, 300);
-    }
-    
-    // 3. Update theme icon with animation
-    function updateThemeIcon(theme) {
-        const icon = themeToggle.querySelector('i');
-        if (icon) {
-            // Add animation class
-            icon.classList.add('animate-spin');
-            
-            // Change icon after a short delay
-            setTimeout(() => {
-                if (theme === 'dark') {
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                }
-                
-                // Remove animation class after completion
-                setTimeout(() => {
-                    const newIcon = themeToggle.querySelector('i');
-                    if (newIcon) newIcon.classList.remove('animate-spin');
-                }, 300);
-            }, 150);
-        }
-    }
-    
-    // 4. Toggle theme with animation
-    function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        applyTheme(newTheme);
-    }
-    
-    // 5. Initialize theme on page load
-    initializeTheme();
-    
-    // 6. Event listener for theme toggle
-    themeToggle.addEventListener('click', toggleTheme);
-    
-    // 7. Watch for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        // Only change if user hasn't explicitly set a preference
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            applyTheme(newTheme);
-        }
-    });
+        // Theme Toggle Handler
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
 
-    
-        
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+// Determine the user's preferred theme
+const savedTheme = localStorage.getItem('theme');
+const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+// Apply initial theme
+if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) {
+    htmlElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+} else {
+    htmlElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+}
+
+
+// Toggle theme on button click
+themeToggle.addEventListener('click', () => {
+    const isDark = htmlElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+
+        // Floating animation for profile image
+        const profileImg = document.querySelector('.floating');
+        if (profileImg) {
+            profileImg.addEventListener('mouseenter', () => {
+                profileImg.style.animationPlayState = 'paused';
             });
-        });
+            profileImg.addEventListener('mouseleave', () => {
+                profileImg.style.animationPlayState = 'running';
+            });
+        }
     </script>
 </body>
 </html>
